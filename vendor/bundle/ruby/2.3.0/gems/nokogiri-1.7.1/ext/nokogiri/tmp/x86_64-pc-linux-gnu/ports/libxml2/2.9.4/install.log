@@ -1,0 +1,38 @@
+make  install-recursive
+make[1]: Entering directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4'
+Making install in include
+make[2]: Entering directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include'
+Making install in libxml
+make[3]: Entering directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include/libxml'
+make[4]: Entering directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include/libxml'
+make[4]: Nothing to be done for 'install-exec-am'.
+ /bin/mkdir -p '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/include/libxml2/libxml'
+ /usr/bin/install -c -m 644 SAX.h entities.h encoding.h parser.h parserInternals.h xmlerror.h HTMLparser.h HTMLtree.h debugXML.h tree.h list.h hash.h xpath.h xpathInternals.h xpointer.h xinclude.h xmlIO.h xmlmemory.h nanohttp.h nanoftp.h uri.h valid.h xlink.h xmlversion.h DOCBparser.h catalog.h threads.h globals.h c14n.h xmlautomata.h xmlregexp.h xmlmodule.h xmlschemas.h schemasInternals.h xmlschemastypes.h xmlstring.h xmlunicode.h xmlreader.h relaxng.h dict.h '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/include/libxml2/libxml'
+ /usr/bin/install -c -m 644 SAX2.h xmlexports.h xmlwriter.h chvalid.h pattern.h xmlsave.h schematron.h '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/include/libxml2/libxml'
+make[4]: Leaving directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include/libxml'
+make[3]: Leaving directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include/libxml'
+make[3]: Entering directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include'
+make[4]: Entering directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include'
+make[3]: Leaving directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include'
+make[2]: Leaving directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4/include'
+Making install in .
+make[2]: Entering directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4'
+make[3]: Entering directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4'
+ /bin/mkdir -p '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib'
+ /bin/bash ./libtool   --mode=install /usr/bin/install -c   libxml2.la '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib'
+libtool: install: /usr/bin/install -c .libs/libxml2.lai /home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib/libxml2.la
+/usr/bin/install: target 'List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib/libxml2.la' is not a directory
+Makefile:923: recipe for target 'install-libLTLIBRARIES' failed
+make[3]: *** [install-libLTLIBRARIES] Error 1
+make[3]: Leaving directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4'
+Makefile:1749: recipe for target 'install-am' failed
+make[2]: *** [install-am] Error 2
+make[2]: Leaving directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4'
+Makefile:1440: recipe for target 'install-recursive' failed
+make[1]: *** [install-recursive] Error 1
+make[1]: Leaving directory '/home/yechielk/Desktop/Compatibilty List/api/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.7.1/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxml2/2.9.4/libxml2-2.9.4'
+Makefile:1743: recipe for target 'install' failed
+make: *** [install] Error 2
