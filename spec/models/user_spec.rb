@@ -68,14 +68,14 @@ RSpec.describe User, type: :model do
   describe 'relationships' do
     it 'has many applications' do
       user = create(:user)
-      user.applications.create(company: "Google", action: "email", complete: false)
+      app = user.applications.create(software: "CardKnox")
 
       expect(user.applications.first).not_to eq(nil)
     end
 
     it "destroys its applications when the user is deleted" do
       user = create(:user)
-      app = user.applications.create(company: "Google", action: "email", complete: false)
+      app = user.applications.create(software: "CardKnox")
 
       user.destroy
       app = Application.find_by(id: app.id)

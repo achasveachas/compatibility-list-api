@@ -6,7 +6,7 @@ RSpec.describe "API::V1::Applications", type: :request do
 
     before(:each) do
       @user = create(:user)
-      @application = @user.applications.create(company: Faker::Company.name)
+      @application = @user.applications.create(software: "CardKnox")
       @token = Auth.create_token(@user.id)
       @token_headers = {
         'Accept': 'application/json',
@@ -41,8 +41,8 @@ RSpec.describe "API::V1::Applications", type: :request do
 
     before(:each) do
       @user = create(:user)
-      3.times do
-        @user.applications.create(company: Faker::Company.name)
+      3.times do |i|
+        @user.applications.create(software: "Software number #{i + 1}")
       end
       @application = @user.applications.first
       @token = Auth.create_token(@user.id)
@@ -68,7 +68,7 @@ RSpec.describe "API::V1::Applications", type: :request do
 
       it "doesn't return applications belonging to other users" do
         user2 = User.create(username: "user2", password: "password2")
-        application2 = user2.applications.create(company: "Wrong Company")
+        application2 = user2.applications.create(software: "Wrong Company")
 
         get "/api/v1/users/#{@user.id}/applications"
         body = JSON.parse(response.body)
@@ -110,18 +110,7 @@ RSpec.describe "API::V1::Applications", type: :request do
     describe "POST /api/v1/users/:id/applications" do
       params = {
         application: {
-          company: 'Google',
-          contact_name: 'Larry Page',
-          contact_title: 'CEO',
-          date: '05/15/17',
-          action: "Meeting",
-          first_contact: false,
-          job_title: 'Lead Developer',
-          job_url: 'google.com',
-          notes: 'Test data',
-          complete: false,
-          next_step: "Get Job",
-          status: nil
+          software: 'Cardknox'
         }
       }
 
@@ -134,45 +123,23 @@ RSpec.describe "API::V1::Applications", type: :request do
       end
 
       it "creates a new instance of an Application" do
-
+        # binding.pry
         application = Application.last
-        expect(application.company).to eq(params[:application][:company])
-        expect(application.contact_name).to eq(params[:application][:contact_name])
-        expect(application.contact_title).to eq(params[:application][:contact_title])
-        expect(application.date).to eq(params[:application][:date])
-        expect(application.action).to eq(params[:application][:action])
-        expect(application.first_contact).to eq(params[:application][:first_contact])
-        expect(application.job_title).to eq(params[:application][:job_title])
-        expect(application.job_url).to eq(params[:application][:job_url])
-        expect(application.notes).to eq(params[:application][:notes])
-        expect(application.complete).to eq(params[:application][:complete])
-        expect(application.next_step).to eq(params[:application][:next_step])
-        expect(application.status).to eq(params[:application][:status])
+        expect(application.software).to eq(params[:application][:software])
       end
 
       it "returns the new Application" do
         application = Application.last
 
         expect(@body['application']['id']).to eq(application.id)
-        expect(@body['application']['company']).to eq(application.company)
+        expect(@body['application']['software']).to eq(application.software)
       end
     end
 
     describe "PATCH /api/v1/users/:id/applications" do
       params = {
         application: {
-          company: 'Google',
-          contact_name: 'Larry Page',
-          contact_title: 'CEO',
-          date: '05/15/17',
-          action: "Meeting",
-          first_contact: false,
-          job_title: 'Lead Developer',
-          job_url: 'google.com',
-          notes: 'Test data',
-          complete: false,
-          next_step: "Get Job",
-          status: nil
+          software: 'USAePay',
         }
       }
 
@@ -186,25 +153,15 @@ RSpec.describe "API::V1::Applications", type: :request do
 
       it "updates the application" do
         application = Application.last
-        expect(application.company).to eq(params[:application][:company])
-        expect(application.contact_name).to eq(params[:application][:contact_name])
-        expect(application.contact_title).to eq(params[:application][:contact_title])
-        expect(application.date).to eq(params[:application][:date])
-        expect(application.action).to eq(params[:application][:action])
-        expect(application.first_contact).to eq(params[:application][:first_contact])
-        expect(application.job_title).to eq(params[:application][:job_title])
-        expect(application.job_url).to eq(params[:application][:job_url])
-        expect(application.notes).to eq(params[:application][:notes])
-        expect(application.complete).to eq(params[:application][:complete])
-        expect(application.next_step).to eq(params[:application][:next_step])
-        expect(application.status).to eq(params[:application][:status])
+        expect(application.software).to eq(params[:application][:software])
+
       end
 
       it "returns the updated Application" do
         application = Application.last
 
         expect(@body['application']['id']).to eq(application.id)
-        expect(@body['application']['company']).to eq(application.company)
+        expect(@body['application']['software']).to eq(application.software)
       end
     end
 

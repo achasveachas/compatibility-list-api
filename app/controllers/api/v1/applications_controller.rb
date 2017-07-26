@@ -78,7 +78,7 @@ class Api::V1::ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.require(:application).permit(:company, :contact_name, :contact_title, :date, :action, :first_contact, :job_title, :job_url, :notes, :complete, :next_step, :status)
+    params.require(:application).permit(:software, :gateway, :omaha, :nashville, :north, :elavon, :tsys, :source, :notes, :agent, :ticket)
   end
 
 end
