@@ -179,7 +179,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 5.0.2)
   rails-controller-testing
-  rspec-rails
+  rspec-rails (~> 3.5)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
