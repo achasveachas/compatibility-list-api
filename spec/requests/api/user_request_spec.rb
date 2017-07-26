@@ -53,6 +53,28 @@ RSpec.describe "API::V1::Users", type: :request do
       end
     end
 
+    describe "on authentication error" do
+
+      it "only an authenticated user can add a user" do
+        params = {
+          user: {
+            username: "testuser",
+            password: "testtest",
+            name: "testname"
+          }
+        }
+
+        post "/api/v1/users",
+          params: params.to_json,
+          headers: @tokenless_headers
+
+        body = JSON.parse(response.body)
+
+        expect(response.status).to eq(403)
+        expect(body["errors"]).to eq([{"message" => "You must include a JWT token"}])
+      end
+    end
+
     describe "on validation error" do
 
       it "required a valid email and password" do
