@@ -1,17 +1,16 @@
 FactoryGirl.define do
   factory :application do
     user
-    company Faker::Company.name
-    contact_name Faker::Name.name
-    contact_title Faker::Job.title
-    date Faker::Date.forward
-    action "Meeting"
-    first_contact false
-    job_title Faker::Job.title
-    job_url Faker::Internet.url
-    notes Faker::Hipster.paragraph
-    complete false
-    next_step "Get Job"
-    status nil
+    software "PaymentSITE"
+    gateway "CardKnox"
+    omaha true
+    nashville true
+    north true
+    buypass true
+    elavon true
+    tsys true
+    source "www.secure.cardknox.com"
+    agent "Yechiel Kalmenson"
+    ticket "613770"
   end
 end
