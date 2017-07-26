@@ -1,20 +1,20 @@
 ## Overview
 
-Here you will find the resources that make up the App Tracker API v1.
+Here you will find the resources that make up the Compatibility List API v1.
 
-If you have any problems or issues please leave an issue or contact the [owner](http://yechiel.me/contact).
+If you have any problems or issues please leave an issue or contact the [Yechiel Kalmenson](mailto:ykalmenson@fidelitypayment.com).
 
 ## Schema
 
 All API access is over HTTPS, and accessed through the endpoint
 ```
-https://app-tracker-api.herokuapp.com/api/v1/
+localhost:3000/api/v1/
 ```
 All data is sent and received as JSON.
 
 ## Authentication
 
-Certain resources are only available to authenticated users. Authentication is verified by sending an Authentication Token with the header for the request:
+Resources are only available to authenticated users. Authentication is verified by sending an Authentication Token with the header for the request:
 ```
 Authorization: Bearer [TOKEN]
 ```
@@ -33,7 +33,7 @@ Sending an invalid token will return the error `{message: "Token is invalid"}`
 
 The App Tracker API uses standard RESTful routing, hee is an overview of the available routes:
 
-#### Authentication
+#### Logging In
 
 Logging in is accomplished via `POST` request to `/auth`
 ```
@@ -66,6 +66,7 @@ If you already have a token and want to retrieve the user information, send an a
 
 ## Users
 #### Sign Up
+Only Authenticated users can create users.
 Creating a new user is accomplished via `POST` request to `/users`:
 ```
 {
@@ -105,9 +106,8 @@ To get the informationfor an (unauthenticated) user, send a `GET` request to `/u
 }
 ```
 ## Applications
-Application routes are nested under the User they belong to (`/users/:user_id/applications`)
 #### index
-To see all of the Applications belonging to a User send a `GET` request to `/users/:user_id/applications`. The response will be an array of Application objects:
+To see all of the Applications send a `GET` request to `/applications`. The response will be an array of Application objects:
 ```
 {
   applications: [
@@ -133,7 +133,7 @@ To see all of the Applications belonging to a User send a `GET` request to `/use
 }
 ```
 #### Show
-To see an individual application send a `GET` request to `/users/:user_id/applications/:application_id`. The response will be an Application object:
+To see an individual application send a `GET` request to `/applications/:application_id`. The response will be an Application object:
 ```
 {
   application: {
@@ -157,8 +157,8 @@ To see an individual application send a `GET` request to `/users/:user_id/applic
 }
 ```
 #### Create/Update
-To Create a new Application send an authenticated `POST` request to `/users/:user_id/applications`.
-To update an existing Application send an authenticated `PATCH` request to `/users/:user_id/applications/:application_id`.
+To Create a new Application send an authenticated `POST` request to `/applications`.
+To update an existing Application send an authenticated `PATCH` request to `/applications/:id`.
 
 ```
 {
@@ -202,4 +202,4 @@ In both cases, the response will be the created/updated Application object:
 }
 ```
 #### Delete
-To delete an Application send an authenticated `DELETE` request to `/users/:user_id/applications/:application_id`. The response will be a `204` status.
+To delete an Application send an authenticated `DELETE` request to `/applications/:id`. The response will be a `204` status.
