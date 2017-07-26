@@ -2,6 +2,19 @@ require 'rails_helper'
 
 RSpec.describe "API::V1::Users", type: :request do
 
+  before(:each) do
+    @user = create(:user)
+    @token = Auth.create_token(@user.id)
+    @token_headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer: #{@token}"
+    }
+    @tokenless_headers = {
+      'Content-Type': 'application/json',
+    }
+  end
+
   describe "POST /users" do
 
     describe "on success" do
@@ -17,14 +30,14 @@ RSpec.describe "API::V1::Users", type: :request do
 
         post "/api/v1/users",
           params: params.to_json,
-          headers: { 'Content-Type': 'application/json'}
+          headers: @token_headers
 
         @response = response
 
       end
 
       it "creates a user from the params" do
-        expect(User.all.count).to eq(1)
+        expect(User.all.count).to eq(2)
       end
 
       it "returns the new user and a JWT token" do
@@ -52,7 +65,7 @@ RSpec.describe "API::V1::Users", type: :request do
 
         post "/api/v1/users",
           params: params.to_json,
-          headers: { 'Content-Type': 'application/json'}
+          headers: @token_headers
 
         body = JSON.parse(response.body)
 
@@ -68,12 +81,10 @@ RSpec.describe "API::V1::Users", type: :request do
   describe "GET /users/:id" do
 
     describe "on success" do
-      before(:each) do
-        @user = create(:user)
-      end
 
       it "returns a list of all users" do
-        get "/api/v1/users/#{@user.id}"
+        get "/api/v1/users/#{@user.id}",
+          headers: @token_headers
 
         body = JSON.parse(response.body)
 
@@ -89,10 +100,10 @@ RSpec.describe "API::V1::Users", type: :request do
     describe "on failure" do
       it "returns a status of 404 with an error message" do
 
-        get "/api/v1/users/5"
+        get "/api/v1/users/5",
+          headers: @token_headers
 
         body = JSON.parse(response.body)
-
         expect(response.status).to eq(404)
         expect(body["errors"]).to eq([{"message"=> "Page not found"}])
 
