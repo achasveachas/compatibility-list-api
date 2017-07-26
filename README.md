@@ -14,6 +14,8 @@ The test suite was built using [RSpec](http://rspec.info/about/).
 
 ### Usage
 
+This root API endpoint can be reached by running `rails s` from the project's root directory and visiting `localhost:3000/api/v1/`
+
 Detailed instructionscan be found in the documentation:
 
 * [Documentation](doc/documentation.md)
