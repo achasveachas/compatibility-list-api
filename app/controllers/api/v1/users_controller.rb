@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :authenticate_token!
 
   def create
     @user = User.new(user_params)
