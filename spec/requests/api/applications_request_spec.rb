@@ -22,12 +22,12 @@ RSpec.describe "API::V1::Applications", type: :request do
       responses = []
       response_bodies = []
 
-      post "/api/v1/users/#{@user.id}/applications", headers: @tokenless_headers
+      post "/api/v1/applications", headers: @tokenless_headers
       responses << response
       response_bodies << JSON.parse(response.body)
 
 
-      patch "/api/v1/users/#{@user.id}/applications/#{@application.id}", headers: @tokenless_headers
+      patch "/api/v1/applications/#{@application.id}", headers: @tokenless_headers
       responses << response
       response_bodies << JSON.parse(response.body)
 
@@ -53,36 +53,39 @@ RSpec.describe "API::V1::Applications", type: :request do
       }
     end
 
-    describe "GET /api/v1/users/:id/applications" do
+    describe "GET /api/v1/applications" do
 
-      it "returns an array of applications belonging to a given user" do
+      it "returns an array of applications" do
 
-        get "/api/v1/users/#{@user.id}/applications"
+        get "/api/v1/applications",
+          headers: @token_headers
 
         body = JSON.parse(response.body)
-
         expect(response.status).to eq(200)
         expect(body['applications']).to be_an(Array)
         expect(body['applications'].size).to eq(3)
       end
 
-      it "doesn't return applications belonging to other users" do
+      it "returns applications belonging to all users" do
         user2 = User.create(username: "user2", password: "password2")
         application2 = user2.applications.create(software: "Wrong Company")
 
-        get "/api/v1/users/#{@user.id}/applications"
+        get "/api/v1/applications",
+          headers: @token_headers
+
         body = JSON.parse(response.body)
-        expect(body['applications'].last['user_id']).not_to eq(user2.id)
+        expect(body['applications'].size).to eq(4)
       end
     end
 
-    describe "GET /api/v1.users/:user_id/applications/:id" do
+    describe "GET /api/v1/applications/:id" do
 
       describe "on success" do
 
         it "returns on application based on its id" do
 
-          get "/api/v1/users/#{@user.id}/applications/#{@application.id}"
+          get "/api/v1/applications/#{@application.id}",
+            headers: @token_headers
 
           body = JSON.parse(response.body)
 
@@ -96,7 +99,8 @@ RSpec.describe "API::V1::Applications", type: :request do
       describe "on failure" do
         it "returns a status of 404 with an error message" do
 
-          get "/api/v1/users/#{@user.id}/applications/fakeid"
+          get "/api/v1/applications/fakeid",
+            headers: @token_headers
 
           body = JSON.parse(response.body)
 
@@ -107,7 +111,7 @@ RSpec.describe "API::V1::Applications", type: :request do
       end
     end
 
-    describe "POST /api/v1/users/:id/applications" do
+    describe "POST /api/v1/applications" do
       params = {
         application: {
           software: 'Cardknox'
@@ -115,7 +119,7 @@ RSpec.describe "API::V1::Applications", type: :request do
       }
 
       before(:each) do
-        post "/api/v1/users/#{@user.id}/applications",
+        post "/api/v1/applications",
           params: params.to_json,
           headers: @token_headers
 
@@ -123,7 +127,6 @@ RSpec.describe "API::V1::Applications", type: :request do
       end
 
       it "creates a new instance of an Application" do
-        # binding.pry
         application = Application.last
         expect(application.software).to eq(params[:application][:software])
       end
@@ -136,7 +139,7 @@ RSpec.describe "API::V1::Applications", type: :request do
       end
     end
 
-    describe "PATCH /api/v1/users/:id/applications" do
+    describe "PATCH /api/v1/applications" do
       params = {
         application: {
           software: 'USAePay',
@@ -144,7 +147,7 @@ RSpec.describe "API::V1::Applications", type: :request do
       }
 
       before(:each) do
-        patch "/api/v1/users/#{@user.id}/applications/#{@user.applications.last.id}",
+        patch "/api/v1/applications/#{Application.last.id}",
           params: params.to_json,
           headers: @token_headers
 
@@ -165,12 +168,12 @@ RSpec.describe "API::V1::Applications", type: :request do
       end
     end
 
-    describe "DELETE /api/v1.users/:user_id/applications/:id" do
+    describe "DELETE /api/v1/applications/:id" do
 
       describe "on success" do
 
         it "deletes the application and returns a status of 204" do
-          delete "/api/v1/users/#{@user.id}/applications/#{@application.id}",
+          delete "/api/v1/applications/#{@application.id}",
             headers: @token_headers
 
 
@@ -184,7 +187,7 @@ RSpec.describe "API::V1::Applications", type: :request do
       describe "on failure" do
         it "returns a status of 404 with an error message" do
 
-          delete "/api/v1/users/#{@user.id}/applications/fakeid",
+          delete "/api/v1/applications/fakeid",
             headers: @token_headers
 
 
