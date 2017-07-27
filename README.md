@@ -1,10 +1,10 @@
-## Compatibility List API
+# Compatibility List API
 
-### Overview
+## Overview
 
 This is an API for for tracking gateways/POS systems that are compatible with Fidelity Payment Services.
 
-### Technical Specs
+## Technical Specs
 
 The API was built using Rails V. 5.0.4
 
@@ -12,7 +12,7 @@ It uses a PostgreSQL database.
 
 The test suite was built using [RSpec](http://rspec.info/about/).
 
-### Usage
+## Usage
 
 This root API endpoint can be reached by running `rails server` from the project's root directory and visiting `localhost:3000/api/v1/`
 
@@ -20,14 +20,14 @@ Detailed instructionscan be found in the documentation:
 
 * [Documentation](doc/documentation.md)
 
-### Contributing
+## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/achasveachas/compatibility-list-api or by email to [ykalmenson@fidelitypayment.com](mailto:ykalmenson@fidelitypayment.com). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/achasveachas/compatibility-list-api) or by email to [ykalmenson@fidelitypayment.com](mailto:ykalmenson@fidelitypayment.com). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-### License
+## License
 
 The app is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-### Contact
+## Contact
 
 Yechiel Kalmenson can be contacted by email at [ykalmenson@fidelitypayment.com](mailto:ykalmenson@fidelitypayment.com).
