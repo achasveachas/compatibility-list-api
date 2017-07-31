@@ -19,18 +19,18 @@ ActiveRecord::Schema.define(version: 20170426031958) do
     t.integer  "user_id"
     t.string   "software"
     t.string   "gateway"
-    t.boolean  "omaha"
-    t.boolean  "nashville"
-    t.boolean  "north"
-    t.boolean  "buypass"
-    t.boolean  "elavon"
-    t.boolean  "tsys"
+    t.boolean  "omaha",      default: false
+    t.boolean  "nashville",  default: false
+    t.boolean  "north",      default: false
+    t.boolean  "buypass",    default: false
+    t.boolean  "elavon",     default: false
+    t.boolean  "tsys",       default: false
     t.text     "notes"
     t.string   "source"
     t.string   "agent"
     t.string   "ticket"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_applications_on_user_id", using: :btree
   end
 

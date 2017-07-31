@@ -4,12 +4,12 @@ class CreateApplications < ActiveRecord::Migration[5.0]
       t.belongs_to :user, foreign_key: true
       t.string :software
       t.string :gateway
-      t.boolean :omaha
-      t.boolean :nashville
-      t.boolean :north
-      t.boolean :buypass
-      t.boolean :elavon
-      t.boolean :tsys
+      t.boolean :omaha, default: false
+      t.boolean :nashville, default: false
+      t.boolean :north, default: false
+      t.boolean :buypass, default: false
+      t.boolean :elavon, default: false
+      t.boolean :tsys, default: false
       t.text :notes
       t.string :source
       t.string :agent

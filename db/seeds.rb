@@ -1,4 +1,8 @@
       @user = User.create(name: "Test User", username: "testuser", password: "testtest")
-      3.times do |i|
-        @user.applications.create(software: "Software number #{i + 1}")
+      i = 1
+      User.all.each do |user|
+        3.times do
+          user.applications.create(software: "Software number #{i}")
+          i += 1
+        end
       end
