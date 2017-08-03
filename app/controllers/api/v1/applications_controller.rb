@@ -62,7 +62,7 @@ class Api::V1::ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.require(:application).permit(:software, :gateway, :omaha, :nashville, :north, :elavon, :tsys, :source, :notes, :agent, :ticket)
+    params.require(:application).permit(:software, :gateway, :omaha, :nashville, :north, :buypass, :elavon, :tsys, :source, :notes, :agent, :ticket)
   end
 
 end
