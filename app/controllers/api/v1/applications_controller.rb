@@ -1,5 +1,5 @@
 class Api::V1::ApplicationsController < ApplicationController
-  before_action :authenticate_token!
+  # before_action :authenticate_token!
 
   def index
 
@@ -23,7 +23,7 @@ class Api::V1::ApplicationsController < ApplicationController
 
   def create
 
-    @application = @user.applications.new(application_params)
+    @application = Application.new(application_params)
     if @application.save
       render 'applications/application.json.jbuilder', application: @application
     else
