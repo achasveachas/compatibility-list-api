@@ -54,6 +54,13 @@ RSpec.describe User, type: :model do
         ])
     end
 
+    it 'has an optional admin? attribute that defaults to false' do
+      user = create(:user)
+      expect(user).not_to be_admin
+      user.admin = true
+      expect(user).to be_admin
+    end
+
   end
 
   describe 'on save' do
