@@ -55,10 +55,10 @@ RSpec.describe User, type: :model do
     end
 
     it 'has an optional admin? attribute that defaults to false' do
-      user1 = create(:user, username: "Non Admin User")
-      user2 = create(:user, username: "Admin User", admin?: true)
-      expect(user1).not_to be_admin
-      expect(user2).to be_admin
+      user = create(:user)
+      expect(user).not_to be_admin
+      user.update_attribute(:admin, true)
+      expect(user).to be_admin
     end
 
   end
