@@ -4,11 +4,18 @@ RSpec.describe "API::V1::Users", type: :request do
 
   before(:each) do
     @user = create(:user)
+    @admin = create(:user, username: "Admin User", admin: true)
     @token = Auth.create_token(@user.id)
+    @admin_token = Auth.create_token(@admin.id)
     @token_headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': "Bearer: #{@token}"
+    }
+    @admin_headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer: #{@admin_token}"
     }
     @tokenless_headers = {
       'Content-Type': 'application/json',
@@ -30,14 +37,14 @@ RSpec.describe "API::V1::Users", type: :request do
 
         post "/api/v1/users",
           params: params.to_json,
-          headers: @token_headers
+          headers: @admin_headers
 
         @response = response
 
       end
 
       it "creates a user from the params" do
-        expect(User.all.count).to eq(2)
+        expect(User.all.count).to eq(3)
       end
 
       it "returns the new user and a JWT token" do
@@ -72,6 +79,25 @@ RSpec.describe "API::V1::Users", type: :request do
 
         expect(response.status).to eq(403)
         expect(body["errors"]).to eq([{"message" => "You must include a JWT token"}])
+      end
+
+      it "only an admin user can add a user" do
+        params = {
+          user: {
+            username: "testuser",
+            password: "testtest",
+            name: "testname"
+          }
+        }
+
+        post "/api/v1/users",
+          params: params.to_json,
+          headers: @token_headers
+
+        body = JSON.parse(response.body)
+
+        expect(response.status).to eq(403)
+        expect(body["errors"]).to eq([{"message" => "You must be an admin to create a user"}])
       end
     end
 
