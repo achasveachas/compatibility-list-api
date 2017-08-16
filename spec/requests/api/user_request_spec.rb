@@ -97,7 +97,7 @@ RSpec.describe "API::V1::Users", type: :request do
         body = JSON.parse(response.body)
 
         expect(response.status).to eq(403)
-        expect(body["errors"]).to eq([{"message" => "You must be an admin to create a user"}])
+        expect(body["errors"]).to eq([{"message" => "You must be an admin to perform this task"}])
       end
     end
 
@@ -113,7 +113,7 @@ RSpec.describe "API::V1::Users", type: :request do
 
         post "/api/v1/users",
           params: params.to_json,
-          headers: @token_headers
+          headers: @admin_headers
 
         body = JSON.parse(response.body)
 
