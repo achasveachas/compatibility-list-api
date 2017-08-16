@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_token!
+  before_action :verify_admin!, only: [:create]
 
   def create
     @user = User.new(user_params)

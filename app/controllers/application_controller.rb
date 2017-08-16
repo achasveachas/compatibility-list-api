@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
 
-  helper_method :authenticate_token!, :current_user
+  helper_method :authenticate_token!, :verify_admin!, :current_user
 
   private
 
@@ -27,6 +27,16 @@ class ApplicationController < ActionController::API
       }, status: 403
     end
 
+  end
+
+  def verify_admin!
+    if !current_user.admin?
+      render json: {
+        errors: [
+          {message: "You must be an admin to perform this task"}
+        ]
+      }, status: 403
+    end
   end
 
   def current_user
