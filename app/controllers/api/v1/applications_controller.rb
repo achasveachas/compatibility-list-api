@@ -1,5 +1,5 @@
 class Api::V1::ApplicationsController < ApplicationController
-  # before_action :authenticate_token!
+  before_action :authenticate_token!
 
   def index
 
