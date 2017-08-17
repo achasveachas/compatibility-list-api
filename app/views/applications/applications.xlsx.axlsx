@@ -1,0 +1,7 @@
+applications = @applications.order(:software)
+
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Compatibility-Requests") do |sheet|
+    sheet.add_row["Software", "Gateway", "Omaha", "Nashville", "North", "Buypass", "Elavon", "TSYS", "Source", "Notes", "Ticket#", "Requesting Agent", "Last Updated"]
+end
