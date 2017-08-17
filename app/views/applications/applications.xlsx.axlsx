@@ -1,7 +1,14 @@
 applications = @applications.order(:software)
 
+def to_token(bool)
+    bool ? "X" : ""
+end
+
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Compatibility-Requests") do |sheet|
-    sheet.add_row["Software", "Gateway", "Omaha", "Nashville", "North", "Buypass", "Elavon", "TSYS", "Source", "Notes", "Ticket#", "Requesting Agent", "Last Updated"]
+    sheet.add_row ["Software", "Gateway", "Omaha", "Nashville", "North", "Buypass", "Elavon", "TSYS", "Source", "Notes", "Ticket#", "Agent", "Last Updated"]
+    applications.each do |app|
+        sheet.add_row [app.software, app.gateway, to_token(app.omaha), to_token(app.nashville), to_token(app.north), to_token(app.buypass), to_token(app.elavon), to_token(app.tsys), app.source, app.notes, app.ticket, app.agent, app.updated_at]
+    end
 end
