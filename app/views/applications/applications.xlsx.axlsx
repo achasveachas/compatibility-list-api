@@ -1,7 +1,7 @@
 applications = @applications.order(:software)
 
 def to_token(bool)
-    bool ? "X" : ""
+    "X" if bool
 end
 
 wb = xlsx_package.workbook
