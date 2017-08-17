@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-
+  include ActionController::MimeResponds
   helper_method :authenticate_token!, :verify_admin!, :current_user
 
   private

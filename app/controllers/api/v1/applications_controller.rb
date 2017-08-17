@@ -4,7 +4,11 @@ class Api::V1::ApplicationsController < ApplicationController
   def index
 
     @applications = Application.all
-    render 'applications/applications.json.jbuilder', applications: @applications
+    respond_to do |format|
+      format.json {render 'applications/applications.json.jbuilder', applications: @applications}
+      format.xlsx
+    end
+    
 
   end
 
