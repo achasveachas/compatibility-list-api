@@ -1,12 +1,12 @@
 class Api::V1::ApplicationsController < ApplicationController
-  before_action :authenticate_token!
+  # before_action :authenticate_token!
 
   def index
 
     @applications = Application.all
     respond_to do |format|
       format.json {render 'applications/applications.json.jbuilder', applications: @applications}
-      format.xlsx
+      format.xlsx {render 'applications/applications.xlsx.axlsx'}
     end
     
 
