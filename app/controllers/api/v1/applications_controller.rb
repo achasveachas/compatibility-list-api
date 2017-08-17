@@ -6,7 +6,7 @@ class Api::V1::ApplicationsController < ApplicationController
     @applications = Application.all
     respond_to do |format|
       format.json {render 'applications/applications.json.jbuilder', applications: @applications}
-      format.xlsx {render 'applications/applications.xlsx.axlsx'}
+      format.xlsx {render xlsx: 'applications', template: 'applications/applications', filename: "compatibility_list.xlsx"}
     end
     
 
