@@ -54,7 +54,8 @@ The response will be a user object with a token that can be used for future auth
   user: {
     id: [USER_ID],
     username: [USERNAME],
-    name: [NAME]
+    name: [NAME],
+    admin: [BOOL]
   },
   token: [TOKEN]
 }
@@ -76,7 +77,7 @@ If you already have a token and want to retrieve the user information, send an a
 
 ### Sign Up
 
-Only Authenticated users can create users.
+Only Authenticated administrators can create users.
 Creating a new user is accomplished via `POST` request to `/users`:
 
 ```javascript
@@ -96,7 +97,8 @@ The response will be the new User with a token:
   user: {
     id: [USER_ID],
     username: [USERNAME],
-    name: [NAME]
+    name: [NAME],
+    admin: [BOOL]
   },
   token: [TOKEN]
 }
@@ -119,7 +121,8 @@ To get the informationfor an (unauthenticated) user, send a `GET` request to `/u
   user: {
     id: [USER_ID],
     username: [USERNAME],
-    name: [NAME]
+    name: [NAME],
+    admin: [BOOL]
   }
 }
 ```
