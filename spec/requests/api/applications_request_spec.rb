@@ -5,7 +5,7 @@ RSpec.describe "API::V1::Applications", type: :request do
   describe "authentication" do
 
     before(:each) do
-      @user = create(:user)
+      @user = create(:user, admin: true)
       @application = @user.applications.create(software: "CardKnox")
       @token = Auth.create_token(@user.id)
       @token_headers = {
@@ -16,6 +16,7 @@ RSpec.describe "API::V1::Applications", type: :request do
       @tokenless_headers = {
         'Content-Type': 'application/json',
       }
+
     end
 
     it "requires a token to make and edit an application" do
@@ -50,6 +51,13 @@ RSpec.describe "API::V1::Applications", type: :request do
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': "Bearer: #{@token}"
+      }
+      @non_admin_user = create(:user, username: Faker::Internet.user_name, admin: false)
+      @non_admin_token = Auth.create_token(@non_admin_user.id)
+      @non_admin_token_headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer: #{@non_admin_token}"
       }
     end
 
@@ -118,24 +126,41 @@ RSpec.describe "API::V1::Applications", type: :request do
         }
       }
 
-      before(:each) do
-        post "/api/v1/applications",
-          params: params.to_json,
-          headers: @token_headers
+      describe "on success" do
 
-        @body = JSON.parse(response.body)
+        before(:each) do
+          post "/api/v1/applications",
+            params: params.to_json,
+            headers: @token_headers
+
+          @body = JSON.parse(response.body)
+        end
+
+        it "creates a new instance of an Application" do
+          application = Application.last
+          expect(application.software).to eq(params[:application][:software])
+        end
+
+        it "returns the new Application" do
+          application = Application.last
+
+          expect(@body['application']['id']).to eq(application.id)
+          expect(@body['application']['software']).to eq(application.software)
+        end
       end
 
-      it "creates a new instance of an Application" do
-        application = Application.last
-        expect(application.software).to eq(params[:application][:software])
-      end
+      describe "on failure" do
 
-      it "returns the new Application" do
-        application = Application.last
+        it "doesn't let a non-admin user create an application" do
+          post "/api/v1/applications",
+            params: params.to_json,
+            headers: @non_admin_token_headers
 
-        expect(@body['application']['id']).to eq(application.id)
-        expect(@body['application']['software']).to eq(application.software)
+          body = JSON.parse(response.body)
+
+          expect(response.status).to eq(403)
+          expect(body["errors"]).to eq([{"message" => "You need to be an admin to perform this action"}])
+        end
       end
     end
 
@@ -145,26 +170,40 @@ RSpec.describe "API::V1::Applications", type: :request do
           software: 'USAePay',
         }
       }
+      describe "on success" do
+        before(:each) do
+          patch "/api/v1/applications/#{Application.last.id}",
+            params: params.to_json,
+            headers: @token_headers
 
-      before(:each) do
-        patch "/api/v1/applications/#{Application.last.id}",
-          params: params.to_json,
-          headers: @token_headers
+          @body = JSON.parse(response.body)
+        end
 
-        @body = JSON.parse(response.body)
+        it "updates the application" do
+          application = Application.last
+          expect(application.software).to eq(params[:application][:software])
+
+        end
+
+        it "returns the updated Application" do
+          application = Application.last
+
+          expect(@body['application']['id']).to eq(application.id)
+          expect(@body['application']['software']).to eq(application.software)
+        end
       end
 
-      it "updates the application" do
-        application = Application.last
-        expect(application.software).to eq(params[:application][:software])
+      describe "on failure" do
+        it "doesn't let a non-admin user update an application" do
+          patch "/api/v1/applications/#{Application.last.id}",
+            params: params.to_json,
+            headers: @non_admin_token_headers
 
-      end
+          body = JSON.parse(response.body)
 
-      it "returns the updated Application" do
-        application = Application.last
-
-        expect(@body['application']['id']).to eq(application.id)
-        expect(@body['application']['software']).to eq(application.software)
+          expect(response.status).to eq(403)
+          expect(body["errors"]).to eq([{"message" => "You need to be an admin to perform this action"}])
+        end
       end
     end
 
@@ -195,6 +234,16 @@ RSpec.describe "API::V1::Applications", type: :request do
           expect(response.status).to eq(404)
           expect(body["errors"]).to eq({"message"=> "Page not found"})
 
+        end
+
+        it "doesn't let a non-admin user delete an application" do
+          delete "/api/v1/applications/#{Application.last.id}",
+            headers: @non_admin_token_headers
+
+          body = JSON.parse(response.body)
+
+          expect(response.status).to eq(403)
+          expect(body["errors"]).to eq([{"message" => "You need to be an admin to perform this action"}])
         end
       end
     end
