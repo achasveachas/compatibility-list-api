@@ -1,5 +1,6 @@
 class Api::V1::ApplicationsController < ApplicationController
   before_action :authenticate_token!
+  before_action :verify_admin!, only: [:update, :create, :destroy]
 
   def index
 
