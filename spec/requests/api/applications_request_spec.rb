@@ -41,7 +41,7 @@ RSpec.describe "API::V1::Applications", type: :request do
   describe "routes" do
 
     before(:each) do
-      @user = create(:user)
+      @user = create(:user, admin: true)
       3.times do |i|
         @user.applications.create(software: "Software number #{i + 1}")
       end
@@ -159,7 +159,7 @@ RSpec.describe "API::V1::Applications", type: :request do
           body = JSON.parse(response.body)
 
           expect(response.status).to eq(403)
-          expect(body["errors"]).to eq([{"message" => "You need to be an admin to perform this action"}])
+          expect(body["errors"]).to eq([{"message" => "You must be an admin to perform this task"}])
         end
       end
     end
@@ -202,7 +202,7 @@ RSpec.describe "API::V1::Applications", type: :request do
           body = JSON.parse(response.body)
 
           expect(response.status).to eq(403)
-          expect(body["errors"]).to eq([{"message" => "You need to be an admin to perform this action"}])
+          expect(body["errors"]).to eq([{"message" => "You must be an admin to perform this task"}])
         end
       end
     end
@@ -243,7 +243,7 @@ RSpec.describe "API::V1::Applications", type: :request do
           body = JSON.parse(response.body)
 
           expect(response.status).to eq(403)
-          expect(body["errors"]).to eq([{"message" => "You need to be an admin to perform this action"}])
+          expect(body["errors"]).to eq([{"message" => "You must be an admin to perform this task"}])
         end
       end
     end
