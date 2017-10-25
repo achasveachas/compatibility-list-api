@@ -73,11 +73,19 @@ RSpec.describe User, type: :model do
   end
 
   describe 'relationships' do
-    it 'has many applications' do
-      user = create(:user)
-      app = user.applications.create(software: "CardKnox")
 
-      expect(user.applications.first).not_to eq(nil)
+    before(:each) do
+      @user = create(:user)
+      @app = @user.applications.create(software: "CardKnox")
+      @comment = @app.comments.create(body: "Comment Body", user_id: @user.id)
+    end
+
+    it 'has many applications' do
+      expect(@user.applications.first).to be_a(Application)
+    end
+
+    it 'has many comments' do
+      expect(@user.comments.first).to be_a(Comment)
     end
 
   end
