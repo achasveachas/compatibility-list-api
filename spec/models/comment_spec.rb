@@ -1,5 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'relationships' do
+
+    before(:each) do
+      @comment = create(:comment)
+    end
+
+    it 'belongs to a user' do
+      expect(@comment.user).to be_a(User)
+    end
+
+    it 'belongs to an application' do
+      expect(@comment.application).to be_a(Application)
+    end 
+  end
 end
