@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :comment do
-    body "Comment Body"
+    association :user, username: Faker::Internet.user_name
     application 
-    user
+    body "Comment Body"
   end
 end
