@@ -30,6 +30,7 @@ class Api::V1::ApplicationsController < ApplicationController
 
     @application = Application.new(application_params)
     if @application.save
+      @application.comments.create(body: params[:application][:notes], user: current_user)
       render 'applications/application.json.jbuilder', application: @application
     else
       render json: {
@@ -42,6 +43,7 @@ class Api::V1::ApplicationsController < ApplicationController
   def update
     @application = Application.find_by(id: params[:id])
     if @application.update_attributes(application_params)
+      @application.comments.create(body: params[:application][:notes], user: current_user)
       render 'applications/application.json.jbuilder', application: @application
     else
       render json: {
@@ -67,7 +69,7 @@ class Api::V1::ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.require(:application).permit(:software, :gateway, :omaha, :nashville, :north, :buypass, :elavon, :tsys, :source, :notes, :agent, :ticket)
+    params.require(:application).permit(:software, :gateway, :omaha, :nashville, :north, :buypass, :elavon, :tsys, :source, :agent, :ticket)
   end
 
 end
