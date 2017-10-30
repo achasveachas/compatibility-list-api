@@ -11,6 +11,7 @@ json.application do
     json.tsys @application.tsys
     json.source @application.source
     json.agent @application.agent
+    json.notes @application.notes
     json.created_at @application.created_at
     json.updated_at @application.updated_at
     json.comments @application.comments do |comment|
