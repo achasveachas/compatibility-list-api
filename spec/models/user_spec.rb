@@ -76,8 +76,9 @@ RSpec.describe User, type: :model do
 
     before(:each) do
       @user = create(:user)
-      @app = @user.applications.create(software: "CardKnox")
-      @comment = @app.comments.create(body: "Comment Body", user_id: @user.id)
+      @app = @user.applications.new(software: "CardKnox")
+      @comment = @app.comments.build(body: "Comment Body", user_id: @user.id)
+      @app.save
     end
 
     it 'has many applications' do

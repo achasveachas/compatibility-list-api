@@ -4,9 +4,11 @@ RSpec.describe Application, type: :model do
   describe 'relationships' do
 
     before(:each) do
-      @user = create(:user)
-      @app = @user.applications.create(software: "CardKnox")
-      @comment = @app.comments.create(body: "Comment Body")
+      @user = User.create(username: Faker::Internet.user_name, password: Faker::Internet.password)
+      @app = @user.applications.new(software: "CardKnox")
+      @comment = @app.comments.build(body: "Comment Body", user: @user)
+      @app.save
+
     end
 
     it 'belongs to a user' do

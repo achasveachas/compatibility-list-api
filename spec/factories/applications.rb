@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :application do
-    user
+    comment
     software "PaymentSITE"
     gateway "CardKnox"
     omaha true

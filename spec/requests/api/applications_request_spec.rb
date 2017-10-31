@@ -6,7 +6,9 @@ RSpec.describe "API::V1::Applications", type: :request do
 
     before(:each) do
       @user = create(:user, admin: true)
-      @application = @user.applications.create(software: "CardKnox")
+      @application = @user.applications.new(software: "CardKnox")
+      @application.comments.build(body: "Comment", user: @user)
+      @application.save
       @token = Auth.create_token(@user.id)
       @token_headers = {
         'Accept': 'application/json',
@@ -43,7 +45,9 @@ RSpec.describe "API::V1::Applications", type: :request do
     before(:each) do
       @user = create(:user, admin: true)
       3.times do |i|
-        @user.applications.create(software: "Software number #{i + 1}")
+        app = @user.applications.new(software: "Software number #{i + 1}")
+        app.comments.build(body: "comment", user: @user)
+        app.save
       end
       @application = @user.applications.first
       @token = Auth.create_token(@user.id)
@@ -76,7 +80,9 @@ RSpec.describe "API::V1::Applications", type: :request do
 
       it "returns applications belonging to all users" do
         user2 = User.create(username: "user2", password: "password2")
-        application2 = user2.applications.create(software: "Wrong Company")
+        application2 = user2.applications.new(software: "Wrong Company")
+        application2.comments.build(body: "Body", user: user2)
+        application2.save
 
         get "/api/v1/applications",
           headers: @token_headers
@@ -122,7 +128,8 @@ RSpec.describe "API::V1::Applications", type: :request do
     describe "POST /api/v1/applications" do
       params = {
         application: {
-          software: 'Cardknox'
+          software: 'Cardknox',
+          notes: "Comment body"
         }
       }
 
@@ -168,6 +175,7 @@ RSpec.describe "API::V1::Applications", type: :request do
       params = {
         application: {
           software: 'USAePay',
+          notes: "Another comment body"
         }
       }
       describe "on success" do

@@ -44,7 +44,7 @@ RSpec.describe "API::V1::Users", type: :request do
       end
 
       it "creates a user from the params" do
-        expect(User.all.count).to eq(3)
+        expect(User.last.username).to eq("testuser")
       end
 
       it "returns the new user and a JWT token" do
