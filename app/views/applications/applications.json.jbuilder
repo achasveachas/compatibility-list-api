@@ -15,6 +15,7 @@ json.applications @applications do |app|
     json.created_at app.created_at
     json.updated_at app.updated_at
     json.comments app.comments do |comment|
+        json.id comment.id
         json.body comment.body
         json.user comment.user&.name || comment.user&.username
         json.created_at comment.created_at
