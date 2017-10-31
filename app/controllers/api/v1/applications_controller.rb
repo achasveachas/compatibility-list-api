@@ -29,8 +29,8 @@ class Api::V1::ApplicationsController < ApplicationController
   def create
 
     @application = Application.new(application_params)
+    @application.comments.build(body: params[:application][:notes], user: current_user)
     if @application.save
-      @application.comments.create(body: params[:application][:notes], user: current_user)
       render 'applications/application.json.jbuilder', application: @application
     else
       render json: {
@@ -42,8 +42,9 @@ class Api::V1::ApplicationsController < ApplicationController
 
   def update
     @application = Application.find_by(id: params[:id])
-    if @application.update_attributes(application_params)
-      @application.comments.create(body: params[:application][:notes], user: current_user)
+    @application.comments.build(body: params[:application][:notes], user: current_user)
+    @application.update_attributes(application_params)
+    if @application.save
       render 'applications/application.json.jbuilder', application: @application
     else
       render json: {
