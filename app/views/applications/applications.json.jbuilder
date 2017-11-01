@@ -12,6 +12,7 @@ json.applications @applications do |app|
     json.source app.source
     json.agent app.agent
     json.notes app.notes
+    json.ticket app.ticket
     json.created_at app.created_at
     json.updated_at app.updated_at
     json.comments app.comments do |comment|
