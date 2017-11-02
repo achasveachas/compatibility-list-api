@@ -70,7 +70,7 @@ class Api::V1::ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.require(:application).permit(:software, :gateway, :omaha, :nashville, :north, :buypass, :elavon, :tsys, :source, :agent, :ticket)
+    params.require(:application).permit(:software, :gateway, :compatible, :omaha, :nashville, :north, :buypass, :elavon, :tsys, :source, :agent, :ticket, :merchants_using)
   end
 
 end
