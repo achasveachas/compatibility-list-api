@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025183717) do
+ActiveRecord::Schema.define(version: 20171102170704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,18 +19,20 @@ ActiveRecord::Schema.define(version: 20171025183717) do
     t.integer  "user_id"
     t.string   "software"
     t.string   "gateway"
-    t.boolean  "omaha",      default: false
-    t.boolean  "nashville",  default: false
-    t.boolean  "north",      default: false
-    t.boolean  "buypass",    default: false
-    t.boolean  "elavon",     default: false
-    t.boolean  "tsys",       default: false
+    t.boolean  "omaha",           default: false
+    t.boolean  "nashville",       default: false
+    t.boolean  "north",           default: false
+    t.boolean  "buypass",         default: false
+    t.boolean  "elavon",          default: false
+    t.boolean  "tsys",            default: false
     t.text     "notes"
     t.string   "source"
     t.string   "agent"
     t.string   "ticket"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "compatible",      default: true
+    t.string   "merchants_using"
     t.index ["user_id"], name: "index_applications_on_user_id", using: :btree
   end
 
