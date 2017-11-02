@@ -137,23 +137,33 @@ To see all of the Applications send a `GET` request to `/applications`. The resp
 {
   applications: [
     {
-      "id": [APPLICATION_ID],
-      "user_id": [USER_ID],
-      "software": [SOFTWARE],
-      "gateway": [GATEWAY],
-      "omaha": [OMAHA],
-      "nashville": [NASHVILLE],
-      "north": [NORTH],
-      "elavon": [ELAVON],
-      "tsys": [TSYS],
-      "buypass": [BUYPASS],
-      "notes": [NOTES],
-      "source": [SOURCE],
-      "agent": [AGENT],
-      "ticket": [TICKET],
-      "created_at": [TIMESTAMP],
-      "updated_at": [TIMESTAMP]
-    }
+          "id": [INT],
+          "user": [STRING],
+          "software": [STRING],
+          "gateway": [STRING],
+          "compatible": [BOOL],
+          "omaha": [BOOL],
+          "nashville": [BOOL],
+          "north": [BOOL],
+          "buypass": [BOOL],
+          "elavon": [BOOL],
+          "tsys": [BOOL],
+          "source": [STRING],
+          "agent": [STRING],
+          "notes": [STRING],
+          "ticket": [STRING],
+          "merchants_using": [STRING],
+          "created_at": [DATETIME],
+          "updated_at": [DATETIME],
+          "comments": [
+              {
+                  "id": [INT],
+                  "body": [STRING],
+                  "user": [STRING],
+                  "created_at": [DATETIME]
+              }
+          ]
+      }
   ]
 }
 ```
@@ -165,23 +175,32 @@ To see an individual application send a `GET` request to `/applications/:applica
 ```javascript
 {
   application: {
-    "id": [APPLICATION_ID],
-    "user_id": [USER_ID],
-    "software": [SOFTWARE],
-    "gateway": [GATEWAY],
-    "omaha": [OMAHA],
-    "nashville": [NASHVILLE],
-    "north": [NORTH],
-    "elavon": [ELAVON],
-    "tsys": [TSYS],
-    "buypass": [BUYPASS],
-    "notes": [NOTES],
-    "source": [SOURCE],
-    "agent": [AGENT],
-    "ticket": [TICKET],
-    "created_at": [TIMESTAMP],
-    "updated_at": [TIMESTAMP]
-  }
+    "id": [INT],
+    "user": [STRING],
+    "software": [STRING],
+    "gateway": [STRING],
+    "compatible": [BOOL],
+    "omaha": [BOOL],
+    "nashville": [BOOL],
+    "north": [BOOL],
+    "buypass": [BOOL],
+    "elavon": [BOOL],
+    "tsys": [BOOL],
+    "source": [STRING],
+    "agent": [STRING],
+    "notes": [STRING],
+    "ticket": [STRING],
+    "merchants_using": [STRING],
+    "created_at": [DATETIME],
+    "updated_at": [DATETIME],
+    "comments": [
+        {
+            "id": [INT],
+            "body": [STRING],
+            "user": [STRING],
+            "created_at": [DATETIME]
+        }
+    ]
 }
 ```
 
@@ -190,26 +209,34 @@ To see an individual application send a `GET` request to `/applications/:applica
 To Create a new Application send an authenticated `POST` request to `/applications`.
 To update an existing Application send an authenticated `PATCH` request to `/applications/:id`.
 
+Note: every request to create or update an application must include at least the software name and a comment.
+
 ```javascript
 {
   application: {
-    "id": [APPLICATION_ID],
-    "user_id": [USER_ID],
-    "software": [SOFTWARE],
-    "gateway": [GATEWAY],
-    "omaha": [OMAHA],
-    "nashville": [NASHVILLE],
-    "north": [NORTH],
-    "elavon": [ELAVON],
-    "tsys": [TSYS],
-    "buypass": [BUYPASS],
-    "notes": [NOTES],
-    "source": [SOURCE],
-    "agent": [AGENT],
-    "ticket": [TICKET],
-    "created_at": [TIMESTAMP],
-    "updated_at": [TIMESTAMP]
-  }
+    "software": [STRING],
+    "gateway": [STRING],
+    "compatible": [BOOL],
+    "omaha": [BOOL],
+    "nashville": [BOOL],
+    "north": [BOOL],
+    "buypass": [BOOL],
+    "elavon": [BOOL],
+    "tsys": [BOOL],
+    "source": [STRING],
+    "agent": [STRING],
+    "notes": [STRING],
+    "ticket": [STRING],
+    "merchants_using": [STRING],
+    "created_at": [DATETIME],
+    "updated_at": [DATETIME],
+    "comments": [
+        {
+            "id": [INT],
+            "body": [STRING],
+            "created_at": [DATETIME]
+        }
+    ]
 }
 ```
 
@@ -218,23 +245,32 @@ In both cases, the response will be the created/updated Application object:
 ```javascript
 {
   application: {
-    "id": [APPLICATION_ID],
-    "user_id": [USER_ID],
-    "software": [SOFTWARE],
-    "gateway": [GATEWAY],
-    "omaha": [OMAHA],
-    "nashville": [NASHVILLE],
-    "north": [NORTH],
-    "elavon": [ELAVON],
-    "tsys": [TSYS],
-    "buypass": [BUYPASS],
-    "notes": [NOTES],
-    "source": [SOURCE],
-    "agent": [AGENT],
-    "ticket": [TICKET],
-    "created_at": [TIMESTAMP],
-    "updated_at": [TIMESTAMP]
-  }
+    "id": [INT],
+    "user": [STRING],
+    "software": [STRING],
+    "gateway": [STRING],
+    "compatible": [BOOL],
+    "omaha": [BOOL],
+    "nashville": [BOOL],
+    "north": [BOOL],
+    "buypass": [BOOL],
+    "elavon": [BOOL],
+    "tsys": [BOOL],
+    "source": [STRING],
+    "agent": [STRING],
+    "notes": [STRING],
+    "ticket": [STRING],
+    "merchants_using": [STRING],
+    "created_at": [DATETIME],
+    "updated_at": [DATETIME],
+    "comments": [
+        {
+            "id": [INT],
+            "body": [STRING],
+            "user": [STRING],
+            "created_at": [DATETIME]
+        }
+    ]
 }
 ```
 
