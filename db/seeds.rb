@@ -6,6 +6,12 @@
 #   end
 # end
 
+# Application.all.each do |app|
+#   app.comments.create(body: app.notes, user: User.last)
+# end
+
 Application.all.each do |app|
-  app.comments.create(body: app.notes, user: User.last)
+  if !app.omaha && !app.nashville && !app.north && !app.tsys && !app.elavon && !app.buypass
+    app.update_attributes(compatible: false)
+  end
 end
