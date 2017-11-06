@@ -42,7 +42,7 @@ class Api::V1::ApplicationsController < ApplicationController
 
   def update
     @application = Application.find_by(id: params[:id])
-    @application.comments.build(body: params[:application][:notes], user: current_user)
+    @application.comments.build(body: params[:application][:notes], user: current_user) if params[:application][:notes]
     @application.update_attributes(application_params)
     if @application.save
       render 'applications/application.json.jbuilder', application: @application
