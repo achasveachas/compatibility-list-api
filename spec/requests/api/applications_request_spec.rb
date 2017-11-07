@@ -96,7 +96,7 @@ RSpec.describe "API::V1::Applications", type: :request do
 
       describe "on success" do
 
-        it "returns on application based on its id" do
+        it "returns on application based on its id along with its comments" do
 
           get "/api/v1/applications/#{@application.id}",
             headers: @token_headers
@@ -106,6 +106,7 @@ RSpec.describe "API::V1::Applications", type: :request do
           expect(response.status).to eq(200)
           expect(body['application']).not_to eq(nil)
           expect(body['application']['id']).to eq(@application.id)
+          expect(body['application']['comments']).to be_an(Array)
         end
 
       end
@@ -148,11 +149,13 @@ RSpec.describe "API::V1::Applications", type: :request do
           expect(application.software).to eq(params[:application][:software])
         end
 
-        it "returns the new Application" do
+        it "returns the new Application with its comment" do
           application = Application.last
 
           expect(@body['application']['id']).to eq(application.id)
           expect(@body['application']['software']).to eq(application.software)
+          expect(@body['application']['comments']).to be_an(Array)
+          expect(@body['application']['comments'][0]["id"]).to eq(application.comments.first.id)
         end
       end
 
@@ -185,19 +188,23 @@ RSpec.describe "API::V1::Applications", type: :request do
             headers: @token_headers
 
           @body = JSON.parse(response.body)
+          @application = Application.last
         end
 
         it "updates the application" do
-          application = Application.last
-          expect(application.software).to eq(params[:application][:software])
-
+          expect(@application.software).to eq(params[:application][:software])
         end
 
-        it "returns the updated Application" do
-          application = Application.last
+        it "adds the note as a new comment" do
+          expect(@application.comments.last.body).to eq(params[:application][:notes])
+        end
 
-          expect(@body['application']['id']).to eq(application.id)
-          expect(@body['application']['software']).to eq(application.software)
+        it "returns the updated Application with all comments" do
+
+          expect(@body['application']['id']).to eq(@application.id)
+          expect(@body['application']['software']).to eq(@application.software)
+          expect(@body['application']['comments'][0]["id"]).to eq(@application.comments.first.id)
+          expect(@body['application']['comments'][1]["id"]).to eq(@application.comments.last.id)
         end
       end
 
