@@ -141,7 +141,6 @@ To see all of the Applications send a `GET` request to `/applications`. The resp
           "user": [STRING],
           "software": [STRING],
           "gateway": [STRING],
-          "compatible": [BOOL],
           "omaha": [BOOL],
           "nashville": [BOOL],
           "north": [BOOL],
@@ -216,7 +215,6 @@ Note: every request to create or update an application must include at least the
   application: {
     "software": [STRING],
     "gateway": [STRING],
-    "compatible": [BOOL],
     "omaha": [BOOL],
     "nashville": [BOOL],
     "north": [BOOL],
