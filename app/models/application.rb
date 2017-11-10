@@ -5,13 +5,15 @@ class Application < ApplicationRecord
 
   before_save :determine_compatibility
 
+  private
+
   def is_compatible?
     self.omaha || self.nashville || self.buypass || self.north || self.elavon || self.tsys
   end
 
 
   def determine_compatibility
-    self.compatible = self.is_compatible?
+    self.compatible = is_compatible?
   end
 
 end
