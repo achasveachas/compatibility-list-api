@@ -10,6 +10,7 @@ json.application do
     json.buypass @application.buypass
     json.elavon @application.elavon
     json.tsys @application.tsys
+    json.other @application.other
     json.source @application.source
     json.agent @application.agent
     json.notes @application.notes
