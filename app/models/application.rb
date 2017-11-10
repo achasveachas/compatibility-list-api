@@ -8,7 +8,7 @@ class Application < ApplicationRecord
   private
 
   def is_compatible?
-    self.omaha || self.nashville || self.buypass || self.north || self.elavon || self.tsys
+    self.omaha || self.nashville || self.buypass || self.north || self.elavon || self.tsys || self.other
   end
 
 
