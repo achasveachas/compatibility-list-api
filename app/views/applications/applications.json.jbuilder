@@ -3,7 +3,7 @@ json.applications @applications do |app|
     json.user app.user&.name || app.user&.username 
     json.software app.software
     json.gateway app.gateway
-    json.compatible app.compatible
+    json.compatible app.compatible?
     json.omaha app.omaha
     json.nashville app.nashville
     json.north app.north
