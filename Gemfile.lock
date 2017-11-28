@@ -1,14 +1,3 @@
-GIT
-  remote: https://github.com/randym/axlsx.git
-  revision: 776037c0fc799bb09da8c9ea47980bd3bf296874
-  ref: 776037c0fc799bb09da8c9ea47980bd3bf296874
-  specs:
-    axlsx (2.1.0.pre)
-      htmlentities (~> 4.3.4)
-      mimemagic (~> 0.3)
-      nokogiri (>= 1.6.6)
-      rubyzip (>= 1.2.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -50,9 +39,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
-    axlsx_rails (0.5.1)
-      actionpack (>= 3.1)
-      axlsx (>= 2.0.1)
     bcrypt (3.1.11)
     builder (3.2.3)
     byebug (9.0.6)
@@ -74,7 +60,6 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    htmlentities (4.3.4)
     i18n (0.8.6)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -91,7 +76,6 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
     mini_portile2 (2.2.0)
     minitest (5.10.3)
     multi_json (1.12.1)
@@ -156,7 +140,6 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    rubyzip (1.2.1)
     slop (3.6.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -182,8 +165,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  axlsx!
-  axlsx_rails
   bcrypt (~> 3.1.7)
   byebug
   dotenv-rails
@@ -199,7 +180,6 @@ DEPENDENCIES
   rails (~> 5.0.2)
   rails-controller-testing
   rspec-rails (~> 3.5)
-  rubyzip (>= 1.2.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
