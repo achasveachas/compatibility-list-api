@@ -8,8 +8,6 @@ RSpec.describe Application, type: :model do
     @comment = @app.comments.build(body: "Comment Body", user: @user)
     @incompatible_app = @user.applications.new(software: "BMS", omaha: false, nashville: false, north: false, buypass: false, elavon: false, tsys: false)
     @incompatible_app.comments.build(body: "Comment Body", user: @user)
-    @app.save
-    @incompatible_app.save
 
   end
 

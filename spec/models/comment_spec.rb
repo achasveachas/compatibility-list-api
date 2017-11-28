@@ -7,7 +7,6 @@ RSpec.describe Comment, type: :model do
       @user = User.create(username: Faker::Internet.user_name, password: Faker::Internet.password)
       @app = Application.new(software: "CardKnox")
       @comment = @app.comments.build(body: "Comment Body", user: @user)
-      @app.save
     end
 
     it 'belongs to a user' do
