@@ -27,11 +27,11 @@ RSpec.describe Application, type: :model do
   describe 'attributes' do
 
     it "is compatible if it is compatible with any front-end" do
-      expect(@app.compatible).to be(true)
+      expect(@app.compatible?).to be(true)
     end
 
     it "is incompatible if it is not compatible with any front-end" do
-      expect(@incompatible_app.compatible).to be(false)
+      expect(@incompatible_app.compatible?).to be(false)
     end
   end
 end
