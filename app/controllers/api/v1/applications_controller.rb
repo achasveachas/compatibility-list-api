@@ -3,14 +3,8 @@ class Api::V1::ApplicationsController < ApplicationController
   before_action :verify_admin!, only: [:update, :create, :destroy]
 
   def index
-
     @applications = Application.all
-    respond_to do |format|
-      format.json {render 'applications/applications.json.jbuilder', applications: @applications}
-      format.xlsx {render xlsx: 'applications', template: 'applications/applications', filename: "compatibility_list.xlsx"}
-    end
-    
-
+    render 'applications/applications.json.jbuilder', applications: @applications
   end
 
   def show
