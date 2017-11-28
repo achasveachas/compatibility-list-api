@@ -3,17 +3,8 @@ class Application < ApplicationRecord
   has_many :comments, dependent: :destroy
   validates_presence_of :comments, :software
 
-  before_save :determine_compatibility
-
-  private
-
-  def is_compatible?
+  def compatible?
     self.omaha || self.nashville || self.buypass || self.north || self.elavon || self.tsys || self.other
-  end
-
-
-  def determine_compatibility
-    self.compatible = is_compatible?
   end
 
 end
