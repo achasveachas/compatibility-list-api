@@ -20,6 +20,16 @@ Detailed instructionscan be found in the documentation:
 
 * [Documentation](doc/documentation.md)
 
+## Development
+
+If you want to play around with the app in a in a developement environment make sure you have Rails installed.
+
+Fork and clone the repository to your local machine and run `bundle install`.
+
+You can fire up the server by running `rails server`.
+
+The test suit can be run by running `rspec`.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on [GitHub](https://github.com/achasveachas/compatibility-list-api) or by email to [ykalmenson@fidelitypayment.com](mailto:ykalmenson@fidelitypayment.com). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
