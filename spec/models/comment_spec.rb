@@ -8,9 +8,8 @@ RSpec.describe Comment, type: :model do
     @comment = @app.comments.build(body: "Comment Body", user: @user)
     @invalid_comment = @app.comments.build(user: @user)
   end
+  
   describe 'relationships' do
-
-
 
     it 'belongs to a user' do
       expect(@comment.user).to be_a(User)
