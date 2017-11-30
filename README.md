@@ -14,7 +14,7 @@ The test suite was built using [RSpec](http://rspec.info/about/).
 
 ## Usage
 
-This root API endpoint can be reached by running `rails server` from the project's root directory and visiting `localhost:3000/api/v1/`
+This root API endpoint can be reached at `https://fps-compatibility-api.herokuapp.com/api/v1`
 
 Detailed instructionscan be found in the documentation:
 

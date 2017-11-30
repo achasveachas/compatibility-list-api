@@ -8,7 +8,7 @@ If you have any problems or issues please leave an issue or contact the [Yechiel
 
 All API access is over HTTPS, and accessed through the endpoint
 
-`localhost:3000/api/v1/`
+`https://fps-compatibility-api.herokuapp.com/api/v1`
 
 All data is sent and received as JSON.
 
