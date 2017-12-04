@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128184237) do
+ActiveRecord::Schema.define(version: 20171204194836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20171128184237) do
     t.boolean  "buypass",         default: false
     t.boolean  "elavon",          default: false
     t.boolean  "tsys",            default: false
-    t.text     "notes"
     t.string   "source"
     t.string   "agent"
     t.string   "ticket"
