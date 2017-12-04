@@ -13,7 +13,6 @@ json.application do
     json.other @application.other
     json.source @application.source
     json.agent @application.agent
-    json.notes @application.notes
     json.ticket @application.ticket
     json.merchants_using @application.merchants_using
     json.created_at @application.created_at
